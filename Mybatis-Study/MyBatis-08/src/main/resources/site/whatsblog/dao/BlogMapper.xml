@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="site.whatsblog.dao.BlogMapper">
+    <insert id="addBlog" parameterType="Blog">
+        insert into blog (id, title, author, create_time, views)
+        values (#{id}, #{title}, #{author}, #{createTime}, #{views});
+    </insert>
+
+    <sql id="cases">
+        <if test="title!=null">
+            and title = #{title}
+        </if>
+        <if test="author!=null">
+            and author = #{author}
+        </if>
+        <if test="createTime!=null">
+            and create_time = #{createTime}
+        </if>
+        <if test="views!=null">
+            and views = #{views}
+        </if>
+    </sql>
+    <select id="findBlogsByBlog" parameterType="map" resultType="Blog">
+        select * from blog
+        <where>
+            <include refid="cases"/>
+        </where>
+    </select>
+    <select id="findBlogsChoose" parameterType="map" resultType="Blog">
+        select * from blog
+        <where>
+            <choose>
+                <when test="title!=null">
+                    and title = #{title}
+                </when>
+                <when test="author!=null">
+                    and author = #{author}
+                </when>
+                <otherwise>
+                    and views = #{views}
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+    <update id="updateBlog" parameterType="map">
+        update blog
+        <set>
+            <if test="title!=null">
+                title = #{title},
+            </if>
+            <if test="author!=null">
+                author = #{author},
+            </if>
+            <if test="createTime!=null">
+                create_time = #{createTime},
+            </if>
+            <if test="views!=null">
+                views = #{views},
+            </if>
+        </set>
+        <where>
+            <choose>
+                <when test="id!=null">
+                    id=#{id}
+                </when>
+                <otherwise>
+                    id='0'
+                </otherwise>
+            </choose>
+        </where>
+    </update>
+</mapper>

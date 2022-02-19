@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="site.whatsblog.dao.UserMapper">
+    <select id="getUsers" resultType="site.whatsblog.pojo.User">
+        select *
+        from user
+    </select>
+    <!--查找用户-->
+    <select id="findUserById" resultType="site.whatsblog.pojo.User" parameterType="int">
+        select *
+        from user
+        where id = #{id}
+    </select>
+    <!--查找用户-->
+    <select id="findUserById2" resultType="site.whatsblog.pojo.User" parameterType="map">
+        select *
+        from user
+        where id = #{id} and name = #{username}
+    </select>
+    <select id="getUserLike" resultType="site.whatsblog.pojo.User">
+        select * from user where name like #{value}
+    </select>
+    <!--添加用户-->
+    <insert id="addUser" parameterType="site.whatsblog.pojo.User">
+        insert into user(name, password)
+        values (#{name}, #{password})
+    </insert>
+    <!--添加用户-->
+    <insert id="addUser2" parameterType="map">
+        insert into user (id, name, password)
+        values (#{id}, #{username}, #{password});
+    </insert>
+    <!--更新用户-->
+    <update id="updateUser" parameterType="site.whatsblog.pojo.User">
+        update user
+        set name    = #{name},
+            password=#{password}
+        where id = #{id};
+    </update>
+    <!--删除用户-->
+    <delete id="deleteUser" parameterType="int">
+        delete
+        from user
+        where id = #{id};
+    </delete>
+</mapper>
