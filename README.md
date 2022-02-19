@@ -2,7 +2,7 @@
 
 [MyBatis学习笔记 - What's Blog. - 程序猿，给社会主义造 Bug (whatsblog.site)](https://www.whatsblog.site/index.php/SSM/26.html) 
 
-<img style="zoom:50%;border-radius:50%" src="http://q1.qlogo.cn/g?b=qq&amp;nk=305887669&amp;s=640" alt="circle">
+<img style="zoom:50%;border-radius:50%" src="http://q1.qlogo.cn/g?b=qq&amp;nk=305887669&amp;s=100" alt="circle">
 
 [mybatis – MyBatis 3 | 简介](https://mybatis.org/mybatis-3/zh/index.html) 
 
